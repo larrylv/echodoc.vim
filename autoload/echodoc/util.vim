@@ -317,7 +317,7 @@ function! echodoc#util#completion_signature(completion, maxlen, filetype) abort
 endfunction
 
 function! s:check_quotes() abort
-  " Note: It is very ugly check...
-  " Rust contains quoting pattern like "fn from(s: &'s str) -> String"
-  return &filetype != 'rust' ? ['"', '`', "'"] : ['"', '`']
+  " Note: Somehow quote in the array triggers echoing the doc again, so here is
+  "       just a patch of avoiding that.
+  return []
 endfunction
